@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="name">Emin Başbayan</p>
+
+    <button id="myBtn">İsmi Değiştir!</button>
+
+    <script>
+      const pTag = document.querySelector("#name");
+      const buttonTag = document.querySelector("#myBtn");
+
+      buttonTag.addEventListener("click", () => {
+        pTag.innerHTML = "Ahmet Demir";
+      });
+    </script>
+  </body>
+</html>

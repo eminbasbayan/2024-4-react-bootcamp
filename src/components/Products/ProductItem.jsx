@@ -2,10 +2,11 @@ import "./ProductItem.css";
 
 function ProductItem() {
   return (
-    <div className="product-item"
-    style={{
-      backgroundColor: "white"
-    }}
+    <div
+      className="product-item"
+      style={{
+        backgroundColor: "white",
+      }}
     >
       <div className="product-image-wrapper">
         <img
