@@ -1,7 +1,7 @@
-import ProductItem from "./ProductItem";
+import Products from "./Products";
 
 function App() {
-  return <ProductItem></ProductItem>;
+  return <Products />;
 }
 
 export default App;
