@@ -1,23 +1,29 @@
+import { productsData } from "../../productsData";
 import ProductItem from "./ProductItem";
 import "./Products.css";
 
-function Products() {
-  const fullName = "Emin Başbayan";
 
-  const image = "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg";
-  const title = "Çanta";
-  const price = 500;
+
+function Products() {
 
   return (
     <div className="products">
       <h2>Products</h2>
       <div className="products-wrapper">
         <ProductItem
-          myName={fullName}
-          image={image}
-          title={title}
-          price={price}
-          category={{}}
+          image={productsData[0].image}
+          title={productsData[0].title}
+          price={productsData[0].price}
+        />
+        <ProductItem
+          image={productsData[1].image}
+          title={productsData[1].title}
+          price={productsData[1].price}
+        />
+        <ProductItem
+          image={productsData[2].image}
+          title={productsData[2].title}
+          price={productsData[2].price}
         />
       </div>
     </div>

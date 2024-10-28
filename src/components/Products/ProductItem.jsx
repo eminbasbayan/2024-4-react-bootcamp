@@ -22,11 +22,9 @@ function ProductItem(props) {
 }
 
 ProductItem.propTypes = {
-  myName: PropTypes.string,
   image: PropTypes.string,
   title: PropTypes.string,
   price: PropTypes.number,
-  category: PropTypes.object.isRequired
 };
 
 export default ProductItem;
