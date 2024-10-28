@@ -17,6 +17,7 @@ function Products() {
           image={image}
           title={title}
           price={price}
+          category={{}}
         />
       </div>
     </div>
