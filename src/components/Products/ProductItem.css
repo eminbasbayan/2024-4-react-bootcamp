@@ -18,3 +18,15 @@
     padding: 10px;
     row-gap: 6px;
 }
+
+.product-item .product-category{
+    display: inline-block;
+    padding: 5px 10px;
+    text-align: end;
+    background-color: red;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: white;
+}

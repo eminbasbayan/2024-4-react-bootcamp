@@ -12,10 +12,11 @@ function ProductItem(props) {
           width={200}
         />
       </div>
-
+      <b className="product-category">{props.category}</b>
       <div className="product-info">
         <strong className="product-title">{props.title}</strong>
         <span className="product-price">{props.price}₺</span>
+        <button>Ürünü Sil</button>
       </div>
     </div>
   );
@@ -25,6 +26,7 @@ ProductItem.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   price: PropTypes.number,
+  category: PropTypes.string,
 };
 
 export default ProductItem;
