@@ -7,12 +7,15 @@ function Products() {
     <div className="products">
       <h2>Products</h2>
       <div className="products-wrapper">
-        {productsData.map((product) => {
-          return <ProductItem
-            image={productsData[0].image}
-            title={productsData[0].title}
-            price={productsData[0].price}
-          />;
+        {productsData.map((product, index) => {
+          return (
+            <ProductItem
+              key={index}
+              image={product.image}
+              title={product.title}
+              price={product.price}
+            />
+          );
         })}
       </div>
     </div>
