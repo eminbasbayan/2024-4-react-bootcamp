@@ -14,9 +14,9 @@ function ProductItem(props) {
       </div>
       <b className="product-category">{props.category}</b>
       <div className="product-info">
-        <strong className="product-title">{props.title}</strong>
+        <strong className="product-title">{props.myTitle}</strong>
         <span className="product-price">{props.price}₺</span>
-        <button>Ürünü Sil</button>
+        <button onClick={props.handleClick}>Title Güncelle</button>
       </div>
     </div>
   );
