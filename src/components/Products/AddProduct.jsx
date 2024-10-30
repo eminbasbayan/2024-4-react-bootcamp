@@ -38,13 +38,23 @@ function AddProduct({ products, setProducts }) {
     image: "",
     category: "",
   });
-
+  
   function handleChange({ target: { name, value } }) {
     setProduct({ ...product, [name]: value });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    const isFormValid = Object.values(product).every(
+      (value) => value.trim() !== ""
+    );
+
+    if (!isFormValid) {
+      console.error("Input alanları boş geçilemez!");
+      return;
+    }
+
     const newProduct = {
       id: Math.random(),
       ...product,
