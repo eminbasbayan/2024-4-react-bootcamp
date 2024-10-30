@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import "./Button.css";
 
 function Button(props) {
-  const { color, addClass, title, size } = props;
+  const { color, addClass, size, children } = props;
 
   return (
     <button className={`btn btn-${color} btn-${size} ${addClass}`}>
-      {title}
+      {children}
     </button>
   );
 }
@@ -15,8 +15,8 @@ function Button(props) {
 export default Button;
 
 Button.propTypes = {
-  title: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.string,
   addClass: PropTypes.string,
+  children: PropTypes.node,
   color: PropTypes.oneOf(["primary", "secondary", "success", "danger"]),
 };

@@ -17,8 +17,10 @@ function ProductItem(props) {
       <div className="product-info">
         <strong className="product-title">{props.title}</strong>
         <span className="product-price">{props.price}₺</span>
-        <Button title="Sepete Ekle" color="primary" size="sm" />
-        <Button title="Ürünü Sil" color="danger" />
+        <Button color="primary">
+          <strong>Sepete Ekle</strong>
+        </Button>
+        <Button color="danger">Ürünü Sil</Button>
       </div>
     </div>
   );
