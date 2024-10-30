@@ -1,4 +1,5 @@
 import { productsData } from "../../productsData";
+import AddProduct from "./AddProduct";
 import ProductItem from "./ProductItem";
 import "./Products.css";
 
@@ -6,6 +7,7 @@ function Products() {
   return (
     <div className="products">
       <h2>Products</h2>
+      <AddProduct />
       <div className="products-wrapper">
         {productsData.map((product) => {
           return (
