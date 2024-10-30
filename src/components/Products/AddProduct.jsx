@@ -2,6 +2,34 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../UI/Button";
 import "./AddProduct.css";
+import ProductInput from "./ProductInput";
+
+const productInputs = [
+  {
+    label: "Title",
+    type: "text",
+    placeholder: "Ürün ismi giriniz.",
+    name: "title",
+  },
+  {
+    label: "Price",
+    type: "number",
+    placeholder: "Ürün fiyatı giriniz.",
+    name: "price",
+  },
+  {
+    label: "Image URL",
+    type: "text",
+    placeholder: "Ürün görseli giriniz.",
+    name: "image",
+  },
+  {
+    label: "Category",
+    type: "text",
+    placeholder: "Ürün kategorisi giriniz.",
+    name: "category",
+  },
+];
 
 function AddProduct({ products, setProducts }) {
   const [product, setProduct] = useState({
@@ -27,22 +55,9 @@ function AddProduct({ products, setProducts }) {
 
   return (
     <form className="add-product-form" onSubmit={handleSubmit}>
-      <label>
-        Title:
-        <input type="text" name="title" onChange={handleChange} />
-      </label>
-      <label>
-        Price:
-        <input type="number" name="price" onChange={handleChange} />
-      </label>
-      <label>
-        Image URL:
-        <input type="text" name="image" onChange={handleChange} />
-      </label>
-      <label>
-        Category:
-        <input type="text" name="category" onChange={handleChange} />
-      </label>
+      {productInputs.map((input, index) => (
+        <ProductInput key={index} {...input} handleChange={handleChange} />
+      ))}
       <Button color={"success"}>Yeni Ürün Ekle</Button>
     </form>
   );
