@@ -3,40 +3,29 @@ import Button from "../UI/Button";
 import "./AddProduct.css";
 
 function AddProduct() {
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
+  const [product, setProduct] = useState({
+    title: "",
+    price: "",
+    image: "",
+  });
 
-  function handleTitleChange(event) {
-    setTitle(event.target.value);
-  }
-
-  function handlePriceChange(event) {
-    setPrice(event.target.value);
-  }
-
-  function handleImageChange(event) {
-    setImage(event.target.value);
+  function handleChange({ target: { name, value } }) {
+    setProduct({ ...product, [name]: value });
   }
 
   return (
     <form className="add-product-form">
-      {title}
-      <br />
-      {price}
-      <br />
-      {image}
       <label>
         Title:
-        <input type="text" onChange={handleTitleChange} />
+        <input type="text" name="title" onChange={handleChange} />
       </label>
       <label>
         Price:
-        <input type="number" onChange={handlePriceChange} />
+        <input type="number" name="price" onChange={handleChange} />
       </label>
       <label>
         Image URL:
-        <input type="text" onChange={handleImageChange} />
+        <input type="text" name="image" onChange={handleChange} />
       </label>
       <Button color={"success"}>Yeni Ürün Ekle</Button>
     </form>
