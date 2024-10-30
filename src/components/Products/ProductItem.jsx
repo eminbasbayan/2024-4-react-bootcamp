@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Button from "../UI/Button";
 import "./ProductItem.css";
 
 function ProductItem(props) {
@@ -14,9 +15,10 @@ function ProductItem(props) {
       </div>
       <b className="product-category">{props.category}</b>
       <div className="product-info">
-        <strong className="product-title">{props.myTitle}</strong>
+        <strong className="product-title">{props.title}</strong>
         <span className="product-price">{props.price}₺</span>
-        <button onClick={props.handleClick}>Title Güncelle</button>
+        <Button title="Sepete Ekle" color="primary" size="sm" />
+        <Button title="Ürünü Sil" color="danger" />
       </div>
     </div>
   );
