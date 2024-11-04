@@ -1,12 +1,13 @@
-import './Modal.css';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import './Modal.css';
 
 const Modal = ({
   title = 'Bu bir title örneğidir.',
   desc = 'Bu bir modal içerik örneğidir.',
   setShowModal,
 }) => {
-  return (
+  return createPortal(
     <div className="modal">
       <div className="modal-overlay" onClick={() => setShowModal(false)}></div>
       <div className="modal-content">
@@ -36,7 +37,8 @@ const Modal = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('modal-root')
   );
 };
 
