@@ -6,7 +6,7 @@ const Modal = ({
   title = 'Bu bir title örneğidir.',
   desc = 'Bu bir modal içerik örneğidir.',
   setShowModal,
-}) => {
+}) => { 
   return createPortal(
     <div className="modal">
       <div className="modal-overlay" onClick={() => setShowModal(false)}></div>

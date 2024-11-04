@@ -3,7 +3,9 @@ import Products from './components/Products/Products';
 function App() {
   return (
     <div className="app">
-      <Products />
+      <div className="container mx-auto">
+        <Products />
+      </div>
     </div>
   );
 }
