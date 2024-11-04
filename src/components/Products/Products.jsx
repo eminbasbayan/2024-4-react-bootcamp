@@ -8,6 +8,11 @@ function Products() {
   const [products, setProducts] = useState(productsData);
   const [isShowModal, setShowModal] = useState(false);
 
+  function handleDeleteItem(productId) {
+    const filteredProducts = products.filter((item) => item.id !== productId);
+    setProducts(filteredProducts);
+  }
+
   return (
     <div className="products p-4">
       <h2 className="text-2xl font-bold mb-4">Products</h2>
@@ -28,10 +33,12 @@ function Products() {
           return (
             <ProductItem
               key={product.id}
+              id={product.id}
               image={product.image}
               title={product.title}
               price={product.price}
               category={product.category}
+              onDeleteItem={handleDeleteItem}
             />
           );
         })}
