@@ -1,18 +1,23 @@
 import './Modal.css';
+import PropTypes from 'prop-types';
 
-const Modal = ({ setShowModal }) => {
+const Modal = ({
+  title = 'Bu bir title örneğidir.',
+  desc = 'Bu bir modal içerik örneğidir.',
+  setShowModal,
+}) => {
   return (
     <div className="modal">
       <div className="modal-overlay" onClick={() => setShowModal(false)}></div>
       <div className="modal-content">
         <div className="modal-header">
-          <h5 className="modal-title">Modal Başlığı</h5>
+          <h5 className="modal-title">{title}</h5>
           <span className="close-button" onClick={() => setShowModal(false)}>
             &times;
           </span>
         </div>
         <div className="modal-body">
-          <p>Bu bir modal içerik örneğidir.</p>
+          <p>{desc}</p>
         </div>
         <div className="modal-footer">
           <button
@@ -33,6 +38,12 @@ const Modal = ({ setShowModal }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  desc: PropTypes.string,
+  setShowModal: PropTypes.func.isRequired,
 };
 
 export default Modal;

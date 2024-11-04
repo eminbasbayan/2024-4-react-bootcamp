@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { productsData } from "../../productsData";
-import AddProduct from "./AddProduct";
-import ProductItem from "./ProductItem";
-import Modal from "../UI/Modal";
-import "./Products.css";
+import { useState } from 'react';
+import { productsData } from '../../productsData';
+import AddProduct from './AddProduct';
+import ProductItem from './ProductItem';
+import Modal from '../UI/Modal';
+import './Products.css';
 
 function Products() {
   const [products, setProducts] = useState(productsData);
@@ -17,7 +17,13 @@ function Products() {
         setProducts={setProducts}
         setShowModal={setShowModal}
       />
-      {isShowModal && <Modal setShowModal={setShowModal} />}
+      {isShowModal && (
+        <Modal
+          setShowModal={setShowModal}
+          title="Uyarı"
+          desc="Input alanları boş geçilemez!"
+        />
+      )}
       <div className="products-wrapper">
         {products.map((product) => {
           return (

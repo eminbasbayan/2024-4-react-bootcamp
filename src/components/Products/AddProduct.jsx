@@ -61,7 +61,9 @@ function AddProduct({ products, setProducts, setShowModal }) {
       id: Math.random(),
       ...product,
       price: Number(product.price),
+      setShowModal: PropTypes.func,
     };
+
     setProducts([newProduct, ...products]);
   }
 
@@ -80,4 +82,5 @@ export default AddProduct;
 AddProduct.propTypes = {
   products: PropTypes.array,
   setProducts: PropTypes.func,
+  setShowModal: PropTypes.func,
 };
