@@ -1,57 +1,59 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
-import Button from "../UI/Button";
-import "./AddProduct.css";
-import ProductInput from "./ProductInput";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import Button from '../UI/Button';
+import './AddProduct.css';
+import ProductInput from './ProductInput';
 
 const productInputs = [
   {
-    label: "Title",
-    type: "text",
-    placeholder: "Ürün ismi giriniz.",
-    name: "title",
+    label: 'Title',
+    type: 'text',
+    placeholder: 'Ürün ismi giriniz.',
+    name: 'title',
   },
   {
-    label: "Price",
-    type: "number",
-    placeholder: "Ürün fiyatı giriniz.",
-    name: "price",
+    label: 'Price',
+    type: 'number',
+    placeholder: 'Ürün fiyatı giriniz.',
+    name: 'price',
   },
   {
-    label: "Image URL",
-    type: "text",
-    placeholder: "Ürün görseli giriniz.",
-    name: "image",
+    label: 'Image URL',
+    type: 'text',
+    placeholder: 'Ürün görseli giriniz.',
+    name: 'image',
   },
   {
-    label: "Category",
-    type: "text",
-    placeholder: "Ürün kategorisi giriniz.",
-    name: "category",
+    label: 'Category',
+    type: 'text',
+    placeholder: 'Ürün kategorisi giriniz.',
+    name: 'category',
   },
 ];
 
-function AddProduct({ products, setProducts }) {
+function AddProduct({ products, setProducts, setShowModal }) {
   const [product, setProduct] = useState({
-    title: "",
-    price: "",
-    image: "",
-    category: "",
+    title: '',
+    price: '',
+    image: '',
+    category: '',
   });
-  
+  const [isShowButton, setShowButton] = useState(true);
+
   function handleChange({ target: { name, value } }) {
     setProduct({ ...product, [name]: value });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-
+    setShowButton(!isShowButton);
     const isFormValid = Object.values(product).every(
-      (value) => value.trim() !== ""
+      (value) => value.trim() !== ''
     );
 
     if (!isFormValid) {
-      console.error("Input alanları boş geçilemez!");
+      console.error('Input alanları boş geçilemez!');
+      setShowModal(true);
       return;
     }
 
@@ -68,7 +70,7 @@ function AddProduct({ products, setProducts }) {
       {productInputs.map((input, index) => (
         <ProductInput key={index} {...input} handleChange={handleChange} />
       ))}
-      <Button color={"success"}>Yeni Ürün Ekle</Button>
+      <Button color={'success'}>Yeni Ürün Ekle</Button>
     </form>
   );
 }

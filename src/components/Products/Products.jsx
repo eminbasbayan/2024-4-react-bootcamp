@@ -2,10 +2,12 @@ import { useState } from "react";
 import { productsData } from "../../productsData";
 import AddProduct from "./AddProduct";
 import ProductItem from "./ProductItem";
+import Modal from "../UI/Modal";
 import "./Products.css";
 
 function Products() {
   const [products, setProducts] = useState(productsData);
+  const [isShowModal, setShowModal] = useState(false);
 
   return (
     <div className="products">
@@ -13,7 +15,9 @@ function Products() {
       <AddProduct
         products={products}
         setProducts={setProducts}
+        setShowModal={setShowModal}
       />
+      {isShowModal && <Modal setShowModal={setShowModal} />}
       <div className="products-wrapper">
         {products.map((product) => {
           return (
