@@ -4,7 +4,7 @@ import './ProductItem.css';
 
 function ProductItem(props) {
   const { id, image, category, title, price, onDeleteItem } = props;
-  
+
   return (
     <div className="product-item">
       <div className="product-image-wrapper">
@@ -12,7 +12,7 @@ function ProductItem(props) {
       </div>
       <b className="product-category">{category}</b>
       <div className="product-info">
-        <strong className="product-title">{title}</strong>
+        <strong className="product-title line-2-clamp">{title}</strong>
         <span className="product-price">{price}₺</span>
         <Button color="primary">
           <strong>Sepete Ekle</strong>
