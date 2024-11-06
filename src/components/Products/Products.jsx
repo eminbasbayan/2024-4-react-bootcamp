@@ -1,17 +1,31 @@
-import { useState } from 'react';
-import { productsData } from '../../productsData';
+import { useEffect, useState } from 'react';
 import AddProduct from './AddProduct';
 import ProductItem from './ProductItem';
 import Modal from '../UI/Modal';
 
 function Products() {
-  const [products, setProducts] = useState(productsData);
+  const [products, setProducts] = useState([]);
   const [isShowModal, setShowModal] = useState(false);
 
   function handleDeleteItem(productId) {
     const filteredProducts = products.filter((item) => item.id !== productId);
     setProducts(filteredProducts);
   }
+
+  async function fetchData() {
+    try {
+      const res = await fetch('https://fakestoreapi.com/products');
+      const data = await res.json();
+      setProducts(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="products p-4">
