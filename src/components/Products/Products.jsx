@@ -5,6 +5,7 @@ import Modal from '../UI/Modal';
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isShowModal, setShowModal] = useState(false);
 
   function handleDeleteItem(productId) {
@@ -20,6 +21,8 @@ function Products() {
       console.log(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -43,6 +46,9 @@ function Products() {
         />
       )}
       <div className="products-wrapper grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {isLoading && (
+          <p className="text-2xl font-bold">Ürünler Yükleniyor...</p>
+        )}
         {products.map((product) => {
           return (
             <ProductItem
