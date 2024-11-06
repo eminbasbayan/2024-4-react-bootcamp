@@ -31,7 +31,7 @@ const productInputs = [
   },
 ];
 
-function AddProduct({ products, setProducts, setShowModal }) {
+function AddProduct({ setProducts, setShowModal }) {
   const [product, setProduct] = useState({
     title: '',
     price: '',
@@ -64,7 +64,7 @@ function AddProduct({ products, setProducts, setShowModal }) {
       setShowModal: PropTypes.func,
     };
 
-    setProducts([newProduct, ...products]);
+    setProducts(newProduct);
   }
 
   return (
