@@ -14,6 +14,7 @@ const RegisterForm = () => {
     resolver: yupResolver(registerSchema),
     defaultValues: {
       userType: '',
+      gender: '',
     },
   });
 
@@ -116,6 +117,43 @@ const RegisterForm = () => {
                   </p>
                 )}
               </div>
+            </div>
+            <div className="form-item">
+              <label className="block text-sm font-medium text-gray 700">
+                Cinsiyet
+              </label>
+              <div className="flex items-center">
+                <input
+                  type="radio"
+                  {...register('gender')}
+                  value="male"
+                  className="h4 w-4"
+                />
+                <label className="ml-2 text-sm text-gray-900">Erkek</label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  type="radio"
+                  {...register('gender')}
+                  value="female"
+                  className="h4 w-4"
+                />
+                <label className="ml-2 text-sm text-gray-900">Kadın</label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  type="radio"
+                  {...register('gender')}
+                  value="other"
+                  className="h4 w-4"
+                />
+                <label className="ml-2 text-sm text-gray-900">Diğer</label>
+              </div>
+              {errors.gender && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.gender.message}
+                </p>
+              )}
             </div>
           </div>
           <Button color="primary" addClass="w-full">

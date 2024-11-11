@@ -39,4 +39,8 @@ export const registerSchema = yup.object().shape({
     .string()
     .oneOf(['personal', 'business'], 'Lütfen kullanıcı tipini seçiniz!')
     .required('Kullanıcı tip zorunludur!'),
+  gender: yup
+    .string()
+    .oneOf(['male', 'female', 'other'], 'Lütfen cinsiyet seçiniz!')
+    .required('Cinsiyet seçimi zorunludur!'),
 });
