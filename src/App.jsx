@@ -1,10 +1,10 @@
-import Products from './components/Products/Products';
+import RegisterForm from './components/Auth/RegisterForm';
 
 function App() {
   return (
     <div className="app">
       <div className="container mx-auto">
-        <Products />
+        <RegisterForm />
       </div>
     </div>
   );
