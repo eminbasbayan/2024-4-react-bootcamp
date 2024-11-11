@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const passwordRules = {
-  min: 10,
+  min: 6,
   minMessage: 'Şifre en az 6 karakter olmalıdır!',
   required: 'Şifre alanı zorunludur!',
 };
@@ -35,4 +35,8 @@ export const registerSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password'), null], 'Şifreler eşleşmiyor!')
     .required('Şifre tekrarı zorunludur!'),
+  userType: yup
+    .string()
+    .oneOf(['personal', 'business'], 'Lütfen kullanıcı tipini seçiniz!')
+    .required('Kullanıcı tip zorunludur!'),
 });

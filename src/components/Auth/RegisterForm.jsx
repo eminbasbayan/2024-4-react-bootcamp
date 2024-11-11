@@ -12,6 +12,9 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(registerSchema),
+    defaultValues: {
+      userType: '',
+    },
   });
 
   const onSubmit = (data) => {
@@ -92,6 +95,27 @@ const RegisterForm = () => {
                   {errors.confirmPassword.message}
                 </p>
               )}
+            </div>
+
+            <div className="form-item space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Hesap Türü
+                </label>
+                <select
+                  className="mt-1 block w-full rounded-md border border-gray-300 p-2"
+                  {...register('userType')}
+                >
+                  <option value="">Seçiniz</option>
+                  <option value="personal">Bireysel</option>
+                  <option value="business">Kurumsal</option>
+                </select>
+                {errors.userType && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.userType.message}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
           <Button color="primary" addClass="w-full">
