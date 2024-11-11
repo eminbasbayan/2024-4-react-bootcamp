@@ -5,8 +5,6 @@ import { loginSchema } from '../../schemas/auth.schema';
 
 import Button from '../UI/Button';
 
-
-
 const LoginForm = () => {
   const {
     register,
@@ -14,6 +12,9 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
+    defaultValues: {
+      rememberMe: false
+    }
   });
 
   const onSubmit = (data) => {
@@ -60,6 +61,17 @@ const LoginForm = () => {
                   {errors.password.message}
                 </p>
               )}
+            </div>
+
+            <div className="form-item flex items-center">
+              <input
+                type="checkbox"
+                {...register('rememberMe')}
+                className="w-4 h-4 rounded border-gray-300"
+              />
+              <label className="ml-2 block text-sm text-gray-900">
+                Beni Hatırla
+              </label>
             </div>
           </div>
           <Button color="primary" addClass="w-full">

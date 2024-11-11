@@ -15,6 +15,7 @@ export const loginSchema = yup.object().shape({
     .string()
     .min(passwordRules.min, passwordRules.minMessage)
     .required(passwordRules.required),
+  rememberMe: yup.boolean(),
 });
 
 export const registerSchema = yup.object().shape({
