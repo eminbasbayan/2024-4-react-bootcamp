@@ -1,18 +1,11 @@
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+
+import { loginSchema } from '../../schemas/auth.schema';
+
 import Button from '../UI/Button';
 
-const loginSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Geçerli bir email adresi giriniz!')
-    .required('Email alanı zorunludur!'),
-  password: yup
-    .string()
-    .min(6, 'Şifre en az 6 karakter olmalıdır!')
-    .required('Şifre alanı zorunludur!'),
-});
+
 
 const LoginForm = () => {
   const {

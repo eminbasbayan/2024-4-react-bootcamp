@@ -1,26 +1,9 @@
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Button from '../UI/Button';
 
-const registerSchema = yup.object().shape({
-  fullName: yup
-    .string()
-    .required('Ad Soyad alanı zorunludur!')
-    .min(3, 'Ad Soyad en az 3 karakter olmalıdır!'),
-  email: yup
-    .string()
-    .email('Geçerli bir email adresi giriniz!')
-    .required('Email alanı zorunludur!'),
-  password: yup
-    .string()
-    .min(6, 'Şifre en az 6 karakter olmalıdır!')
-    .required('Şifre alanı zorunludur!'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Şifreler eşleşmiyor!')
-    .required('Şifre tekrarı zorunludur!'),
-});
+import { registerSchema } from '../../schemas/auth.schema';
+
+import Button from '../UI/Button';
 
 const RegisterForm = () => {
   const {
