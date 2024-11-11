@@ -1,12 +1,35 @@
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Button from '../UI/Button';
+
+const registerSchema = yup.object().shape({
+  fullName: yup
+    .string()
+    .required('Ad Soyad alanı zorunludur!')
+    .min(3, 'Ad Soyad en az 3 karakter olmalıdır!'),
+  email: yup
+    .string()
+    .email('Geçerli bir email adresi giriniz!')
+    .required('Email alanı zorunludur!'),
+  password: yup
+    .string()
+    .min(6, 'Şifre en az 6 karakter olmalıdır!')
+    .required('Şifre alanı zorunludur!'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Şifreler eşleşmiyor!')
+    .required('Şifre tekrarı zorunludur!'),
+});
 
 const RegisterForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(registerSchema),
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -25,11 +48,16 @@ const RegisterForm = () => {
                 Ad Soyad
               </label>
               <input
-                {...register('fullName')}
+                {...register('fullName', { required: true })}
                 type="text"
                 className="mt-1 block w-full rounded-md border border-gray-300 p-2"
                 placeholder="Ad Soyad"
               />
+              {errors.fullName && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.fullName.message}
+                </p>
+              )}
             </div>
 
             <div className="form-item">
@@ -37,11 +65,16 @@ const RegisterForm = () => {
                 Email
               </label>
               <input
-                {...register('email')}
+                {...register('email', { required: true })}
                 type="email"
                 className="mt-1 block w-full rounded-md border border-gray-300 p-2"
                 placeholder="ornek@email.com"
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
 
             <div className="form-item">
@@ -49,11 +82,16 @@ const RegisterForm = () => {
                 Şifre
               </label>
               <input
-                {...register('password')}
+                {...register('password', { required: true })}
                 type="password"
                 className="mt-1 block w-full rounded-md border border-gray-300 p-2"
                 placeholder="******"
               />
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
             <div className="form-item">
@@ -61,11 +99,16 @@ const RegisterForm = () => {
                 Şifre Tekrar
               </label>
               <input
-                {...register('confirmPassword')}
+                {...register('confirmPassword', { required: true })}
                 type="password"
                 className="mt-1 block w-full rounded-md border border-gray-300 p-2"
                 placeholder="******"
               />
+              {errors.confirmPassword && (
+                <p className="mt-1 text-sm text-red-600">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
             </div>
           </div>
           <Button color="primary" addClass="w-full">
