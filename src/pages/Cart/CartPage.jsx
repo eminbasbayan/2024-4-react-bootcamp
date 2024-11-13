@@ -1,7 +1,9 @@
 import Button from '../../components/UI/Button';
+import { useCart } from '../../context/CartContext';
 import './CartPage.css';
 
 const CartPage = () => {
+  const { dispatch } = useCart();
   // Örnek veri
   const sepetBos = false;
   const sepetUrunleri = [
@@ -39,11 +41,26 @@ const CartPage = () => {
                 <h3 className="cart-item-title">{item.title}</h3>
                 <p className="cart-item-price">{item.price}₺</p>
                 <div className="cart-item-quantity">
-                  <Button color="primary">-</Button>
+                  <Button
+                    color="primary"
+                    onClick={() => dispatch({ type: 'MIKTAR_GUNCELLE' })}
+                  >
+                    -
+                  </Button>
                   <span>{item.quantity}</span>
-                  <Button color="primary">+</Button>
+                  <Button
+                    color="primary"
+                    onClick={() => dispatch({ type: 'MIKTAR_GUNCELLE' })}
+                  >
+                    +
+                  </Button>
                 </div>
-                <Button color="danger">Ürünü Sil</Button>
+                <Button
+                  color="danger"
+                  onClick={() => dispatch({ type: 'SEPETTEN_CIKAR' })}
+                >
+                  Ürünü Sil
+                </Button>
               </div>
             </div>
           ))}

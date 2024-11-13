@@ -4,7 +4,22 @@ import PropTypes from 'prop-types';
 
 export const CartContext = createContext();
 
-const cartReducer = () => {};
+const cartReducer = (state, action) => {
+  switch (action.type) {
+    case 'SEPETE_EKLE':
+      console.log('ürün sepete eklendi!');
+      return state;
+    case 'SEPETTEN_CIKAR':
+      console.log('ürün sepetten çıkarıldı!');
+      return state;
+    case 'MIKTAR_GUNCELLE':
+      console.log('ürün sepet miktarı güncellendi');
+      return state;
+
+    default:
+      return state;
+  }
+};
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, { cartItems: [] });
@@ -13,6 +28,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartItems: state.cartItems,
+        dispatch,
       }}
     >
       {children}
