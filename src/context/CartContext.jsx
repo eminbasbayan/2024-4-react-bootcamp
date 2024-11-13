@@ -28,8 +28,12 @@ const cartReducer = (state, action) => {
         cartItems: [...state.cartItems, { ...action.item, quantity: 1 }],
       };
     case 'SEPETTEN_CIKAR':
-      console.log('ürün sepetten çıkarıldı!');
-      return state;
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          (pItem) => pItem.id !== action.id
+        ),
+      };
     case 'MIKTAR_GUNCELLE':
       console.log('ürün sepet miktarı güncellendi');
       return state;

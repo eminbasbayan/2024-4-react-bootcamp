@@ -3,18 +3,9 @@ import { useCart } from '../../context/CartContext';
 import './CartPage.css';
 
 const CartPage = () => {
-  const { dispatch } = useCart();
+  const { cartItems, dispatch } = useCart();
   // Örnek veri
-  const sepetBos = false;
-  const sepetUrunleri = [
-    {
-      id: 1,
-      title: 'Örnek Ürün',
-      price: 199.99,
-      image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-      quantity: 2,
-    },
-  ];
+  const sepetBos = cartItems.length === 0;
 
   if (sepetBos) {
     return (
@@ -30,7 +21,7 @@ const CartPage = () => {
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-4">Sepetiniz</h2>
         <div className="cart-items">
-          {sepetUrunleri.map((item) => (
+          {cartItems.map((item) => (
             <div key={item.id} className="cart-item">
               <img
                 src={item.image}
@@ -57,7 +48,7 @@ const CartPage = () => {
                 </div>
                 <Button
                   color="danger"
-                  onClick={() => dispatch({ type: 'SEPETTEN_CIKAR' })}
+                  onClick={() => dispatch({ type: 'SEPETTEN_CIKAR', id: item.id })}
                 >
                   Ürünü Sil
                 </Button>
