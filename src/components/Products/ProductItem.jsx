@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import Button from '../UI/Button';
 import './ProductItem.css';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 function ProductItem(props) {
   const { id, image, category, title, price, onDeleteItem } = props;
+  const { setLogo } = useContext(ThemeContext);
 
   return (
     <div className="product-item">
@@ -14,7 +17,7 @@ function ProductItem(props) {
       <div className="product-info">
         <strong className="product-title line-2-clamp">{title}</strong>
         <span className="product-price">{price}₺</span>
-        <Button color="primary">
+        <Button color="primary" onClick={() => setLogo("Yeni Logo")}>
           <strong>Sepete Ekle</strong>
         </Button>
         <Button color="danger" onClick={() => onDeleteItem(id)}>

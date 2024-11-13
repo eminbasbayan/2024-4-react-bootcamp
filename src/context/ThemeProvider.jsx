@@ -1,11 +1,20 @@
+import { useState } from 'react';
 import { ThemeContext } from './ThemeContext';
 
 import PropTypes from 'prop-types';
 
 const ThemeProvider = ({ children }) => {
-  const fullName = 'Emin Başbayan';
+  const [logo, setLogo] = useState('E-Ticaret');
+
   return (
-    <ThemeContext.Provider value={fullName}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider
+      value={{
+        logo,
+        setLogo,
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
   );
 };
 
