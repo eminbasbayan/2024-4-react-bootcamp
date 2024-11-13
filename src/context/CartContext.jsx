@@ -8,17 +8,17 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case 'SEPETE_EKLE':
       const mevcutUrun = state.cartItems.find(
-        (pItem) => pItem.id === action.item.id
+        (cItem) => cItem.id === action.item.id
       );
 
       if (mevcutUrun) {
         return {
           ...state,
-          cartItems: state.cartItems.map((pItem) => {
-            if (pItem.id === action.item.id) {
-              return { ...pItem, quantity: pItem.quantity + 1 };
+          cartItems: state.cartItems.map((cItem) => {
+            if (cItem.id === action.item.id) {
+              return { ...cItem, quantity: cItem.quantity + 1 };
             }
-            return pItem;
+            return cItem;
           }),
         };
       }
@@ -30,13 +30,18 @@ const cartReducer = (state, action) => {
     case 'SEPETTEN_CIKAR':
       return {
         ...state,
-        cartItems: state.cartItems.filter(
-          (pItem) => pItem.id !== action.id
-        ),
+        cartItems: state.cartItems.filter((cItem) => cItem.id !== action.id),
       };
     case 'MIKTAR_GUNCELLE':
-      console.log('ürün sepet miktarı güncellendi');
-      return state;
+      return {
+        ...state,
+        cartItems: state.cartItems.map((cItem) => {
+          if (cItem.id === action.payload.id) {
+            return { ...cItem, quantity: action.payload.quantity };
+          }
+          return cItem;
+        }),
+      };
 
     default:
       return state;

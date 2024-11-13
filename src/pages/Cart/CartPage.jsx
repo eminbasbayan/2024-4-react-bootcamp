@@ -16,6 +16,14 @@ const CartPage = () => {
     );
   }
 
+  const miktarGuncelle = (urunId, yeniMiktar) => {
+    if (yeniMiktar < 1) return;
+    dispatch({
+      type: 'MIKTAR_GUNCELLE',
+      payload: { id: urunId, quantity: yeniMiktar },
+    });
+  };
+
   return (
     <div className="cart-page">
       <div className="container mx-auto px-4 py-8">
@@ -34,21 +42,23 @@ const CartPage = () => {
                 <div className="cart-item-quantity">
                   <Button
                     color="primary"
-                    onClick={() => dispatch({ type: 'MIKTAR_GUNCELLE' })}
+                    onClick={() => miktarGuncelle(item.id, item.quantity - 1)}
                   >
                     -
                   </Button>
                   <span>{item.quantity}</span>
                   <Button
                     color="primary"
-                    onClick={() => dispatch({ type: 'MIKTAR_GUNCELLE' })}
+                    onClick={() => miktarGuncelle(item.id, item.quantity + 1)}
                   >
                     +
                   </Button>
                 </div>
                 <Button
                   color="danger"
-                  onClick={() => dispatch({ type: 'SEPETTEN_CIKAR', id: item.id })}
+                  onClick={() =>
+                    dispatch({ type: 'SEPETTEN_CIKAR', id: item.id })
+                  }
                 >
                   Ürünü Sil
                 </Button>
