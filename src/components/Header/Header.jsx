@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
+
 import './Header.css';
-import { useContext } from 'react';
-import { ThemeContext } from '../../context/ThemeContext';
 
 const Header = () => {
-  const { logo } = useContext(ThemeContext);
-  const sepetUrunSayisi = 0;
+  const { cartItems } = useCart();
+  const sepetUrunSayisi = cartItems.length;
+
+  console.log(cartItems);
 
   return (
     <header className="header">
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16">
           <Link to="/" className="text-xl font-bold">
-            {logo}
+            E-Ticaret
           </Link>
 
           <div className="flex items-center gap-6">
