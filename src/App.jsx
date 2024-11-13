@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import Products from './components/Products/Products';
 import { ThemeContext } from './context/ThemeContext';
 import Header from './components/Header/Header';
+import CartPage from './pages/Cart/CartPage';
 
 function App() {
   const value = useContext(ThemeContext);
@@ -12,7 +13,7 @@ function App() {
     <div className="app">
       <div className="container mx-auto">
         <Header />
-        <Products />
+        <CartPage />
       </div>
     </div>
   );
