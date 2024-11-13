@@ -8,7 +8,7 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case 'SEPETE_EKLE':
       console.log('ürün sepete eklendi!');
-      return state;
+      return { ...state, cartItems: [...state.cartItems, action.item] };
     case 'SEPETTEN_CIKAR':
       console.log('ürün sepetten çıkarıldı!');
       return state;

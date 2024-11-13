@@ -5,6 +5,7 @@ import { useCart } from '../../context/CartContext';
 
 function ProductItem(props) {
   const { id, image, category, title, price, onDeleteItem } = props;
+  const { onDeleteItem: deleteItem, ...item } = props;
   const { dispatch } = useCart();
 
   return (
@@ -18,7 +19,7 @@ function ProductItem(props) {
         <span className="product-price">{price}₺</span>
         <Button
           color="primary"
-          onClick={() => dispatch({ type: 'SEPETE_EKLE' })}
+          onClick={() => dispatch({ type: 'SEPETE_EKLE', item })}
         >
           <strong>Sepete Ekle</strong>
         </Button>
