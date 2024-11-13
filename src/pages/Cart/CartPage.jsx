@@ -24,6 +24,11 @@ const CartPage = () => {
     });
   };
 
+  const toplamTutar = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   return (
     <div className="cart-page">
       <div className="container mx-auto px-4 py-8">
@@ -67,7 +72,7 @@ const CartPage = () => {
           ))}
         </div>
         <div className="cart-summary">
-          <h3 className="text-xl font-bold">Toplam Tutar: 399.98₺</h3>
+          <h3 className="text-xl font-bold">Toplam Tutar: {toplamTutar.toFixed(2)}₺</h3>
         </div>
       </div>
     </div>
