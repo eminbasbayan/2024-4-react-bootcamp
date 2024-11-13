@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
@@ -7,17 +8,17 @@ const Header = () => {
     <header className="header">
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16">
-          <a href="/" className="text-xl font-bold">
+          <Link to="/" className="text-xl font-bold">
             E-Ticaret
-          </a>
+          </Link>
 
           <div className="flex items-center gap-6">
-            <a href="/" className="nav-link">
+            <Link to="/" className="nav-link">
               Ürünler
-            </a>
-            <a href="/sepet" className="nav-link cart-link">
+            </Link>
+            <Link to="/sepet" className="nav-link cart-link">
               Sepet ({sepetUrunSayisi})
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
