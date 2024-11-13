@@ -7,8 +7,26 @@ export const CartContext = createContext();
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'SEPETE_EKLE':
-      console.log('ürün sepete eklendi!');
-      return { ...state, cartItems: [...state.cartItems, action.item] };
+      const mevcutUrun = state.cartItems.find(
+        (pItem) => pItem.id === action.item.id
+      );
+
+      if (mevcutUrun) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((pItem) => {
+            if (pItem.id === action.item.id) {
+              return { ...pItem, quantity: pItem.quantity + 1 };
+            }
+            return pItem;
+          }),
+        };
+      }
+
+      return {
+        ...state,
+        cartItems: [...state.cartItems, { ...action.item, quantity: 1 }],
+      };
     case 'SEPETTEN_CIKAR':
       console.log('ürün sepetten çıkarıldı!');
       return state;
