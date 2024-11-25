@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import Header from './components/Header/Header';
 import CartPage from './pages/Cart/CartPage';
 import HomePage from './pages/HomePage';
@@ -8,6 +9,7 @@ function App() {
     <div className="app">
       <div className="container mx-auto">
         <Header />
+        <Toaster />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/sepet" element={<CartPage />} />

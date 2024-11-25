@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Button from '../UI/Button';
+import toast from 'react-hot-toast';
 import './ProductItem.css';
 import { useCart } from '../../context/CartContext';
 
@@ -7,6 +8,11 @@ function ProductItem(props) {
   const { id, image, category, title, price, onDeleteItem } = props;
   const { onDeleteItem: deleteItem, ...item } = props;
   const { dispatch } = useCart();
+
+  const handleAddToCart = () => {
+    dispatch({ type: 'SEPETE_EKLE', item });
+    toast.success('Ürün sepete eklendi');
+  };
 
   return (
     <div className="product-item">
@@ -19,7 +25,7 @@ function ProductItem(props) {
         <span className="product-price">{price}₺</span>
         <Button
           color="primary"
-          onClick={() => dispatch({ type: 'SEPETE_EKLE', item })}
+          onClick={handleAddToCart}
         >
           <strong>Sepete Ekle</strong>
         </Button>
