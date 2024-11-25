@@ -4,23 +4,28 @@ import HomePage from './pages/HomePage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import ProductDetail from './pages/ProductDetail';
 const router = createBrowserRouter([
   {
     path: '/',
     element: <HomePage />,
   },
   {
-    path: "/sepet",
-    element: <CartPage />
+    path: '/sepet',
+    element: <CartPage />,
   },
   {
-    path: "/hakkimizda",
-    element: <AboutPage />
+    path: '/hakkimizda',
+    element: <AboutPage />,
   },
   {
-    path: "/iletisim",
-    element: <ContactPage />
-  }
+    path: '/iletisim',
+    element: <ContactPage />,
+  },
+  {
+    path: '/urun',
+    element: <ProductDetail />,
+  },
 ]);
 
 function App() {

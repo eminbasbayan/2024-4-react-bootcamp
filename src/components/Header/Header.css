@@ -1,24 +1,39 @@
 .header {
-    background-color: white;
-    border-bottom: 1px solid #e5e5e5;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: white;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .nav-link::after {
+    display: none;
   }
-  
-  .nav-link {
-    color: #333;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  
-  .nav-link:hover {
-    color: #007bff;
-  }
-  
-  .cart-link {
-    position: relative;
-    padding-right: 8px;
-  }
-  
+}
+
+.cart-link {
+  position: relative;
+  padding-right: 8px;
+}
