@@ -1,26 +1,33 @@
+import { useParams } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Button from '../components/UI/Button';
+import { useEffect, useState } from 'react';
 
 const ProductDetail = () => {
-  // Örnek ürün verisi
-  const product = {
-    id: 2,
-    title: 'Mens Casual Premium Slim Fit T-Shirts',
-    price: 22.3,
-    description:
-      'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
-    category: "men's clothing",
-    image:
-      'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
-    rating: {
-      rate: 4.1,
-      count: 259,
-    },
-  };
+  const [product, setProduct] = useState(null);
+  const { productId } = useParams();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch(
+          `https://fakestoreapi.com/products/${productId}`
+        );
+        const data = await res.json();
+        setProduct(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, [productId]);
+
+  if (!product) return null;
 
   return (
     <div className="product-detail min-h-screen bg-gray-50">
       <Header />
+      <p className="text-center text-2xl font-bold">{productId}</p>
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-md">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">

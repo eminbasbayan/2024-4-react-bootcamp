@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: <ContactPage />,
   },
   {
-    path: '/urun',
+    path: '/urun/:productId',
     element: <ProductDetail />,
   },
 ]);
