@@ -10,7 +10,7 @@ const CartPage = () => {
 
   if (sepetBos) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto">
         <Header />
         <h2 className="text-2xl font-bold mb-4">Sepetiniz</h2>
         <p>Sepetinizde ürün bulunmamaktadır.</p>
