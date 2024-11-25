@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 
 import './Header.css';
@@ -17,19 +17,26 @@ const Header = () => {
           </Link>
 
           <div className="flex items-center gap-6">
-            <a
-              href="/"
-              className="nav-link"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate('/');
-              }}
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? 'nav-link cart-link text-blue-500'
+                  : 'nav-link cart-link'
+              }
             >
               Ürünler
-            </a>
-            <Link to="/sepet" className="nav-link cart-link">
+            </NavLink>
+            <NavLink
+              to="/sepet"
+              className={({ isActive }) =>
+                isActive
+                  ? 'nav-link cart-link text-blue-500'
+                  : 'nav-link cart-link'
+              }
+            >
               Sepet ({sepetUrunSayisi})
-            </Link>
+            </NavLink>
           </div>
         </nav>
       </div>
