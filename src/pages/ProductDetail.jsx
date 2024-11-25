@@ -2,14 +2,17 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Button from '../components/UI/Button';
 import { useEffect, useState } from 'react';
+import ProductDetailSkeleton from '../components/Skeleton/ProductDetailSkeleton';
 
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { productId } = useParams();
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setLoading(true);
         const res = await fetch(
           `https://fakestoreapi.com/products/${productId}`
         );
@@ -17,10 +20,21 @@ const ProductDetail = () => {
         setProduct(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
     fetchData();
   }, [productId]);
+
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <ProductDetailSkeleton />
+      </>
+    );
+  }
 
   if (!product) return null;
 
