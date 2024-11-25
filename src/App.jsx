@@ -1,19 +1,25 @@
 import { Toaster } from 'react-hot-toast';
-import Header from './components/Header/Header';
 import CartPage from './pages/Cart/CartPage';
 import HomePage from './pages/HomePage';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />,
+  },
+  {
+    path: "/sepet",
+    element: <CartPage />
+  }
+]);
 
 function App() {
   return (
     <div className="app">
       <div className="container mx-auto">
-        <Header />
         <Toaster />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/sepet" element={<CartPage />} />
-        </Routes>
+        <RouterProvider router={router} />
       </div>
     </div>
   );
