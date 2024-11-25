@@ -28,6 +28,22 @@ const Header = () => {
               Ürünler
             </NavLink>
             <NavLink
+              to="/hakkimizda"
+              className={({ isActive }) =>
+                isActive ? 'nav-link text-blue-500' : 'nav-link'
+              }
+            >
+              Hakkımızda
+            </NavLink>
+            <NavLink
+              to="/iletisim"
+              className={({ isActive }) =>
+                isActive ? 'nav-link text-blue-500' : 'nav-link'
+              }
+            >
+              İletişim
+            </NavLink>
+            <NavLink
               to="/sepet"
               className={({ isActive }) =>
                 isActive

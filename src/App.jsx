@@ -2,7 +2,8 @@ import { Toaster } from 'react-hot-toast';
 import CartPage from './pages/Cart/CartPage';
 import HomePage from './pages/HomePage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -11,6 +12,14 @@ const router = createBrowserRouter([
   {
     path: "/sepet",
     element: <CartPage />
+  },
+  {
+    path: "/hakkimizda",
+    element: <AboutPage />
+  },
+  {
+    path: "/iletisim",
+    element: <ContactPage />
   }
 ]);
 
