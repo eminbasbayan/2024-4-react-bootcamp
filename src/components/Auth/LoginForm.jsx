@@ -4,8 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '../../schemas/auth.schema';
 
 import Button from '../UI/Button';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,12 +18,17 @@ const LoginForm = () => {
   } = useForm({
     resolver: yupResolver(loginSchema),
     defaultValues: {
-      rememberMe: false
-    }
+      rememberMe: false,
+    },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async ({ email, password }) => {
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
