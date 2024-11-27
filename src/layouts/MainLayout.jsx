@@ -1,10 +1,12 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../components/Header/Header';
 
 const MainLayout = () => {
+  const location = useLocation();
+
   return (
     <div className="main-layout">
-      <Header />
+      {!location.pathname.startsWith('/auth') && <Header />}
       <div className="content">
         <Outlet />
       </div>
