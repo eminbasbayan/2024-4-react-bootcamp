@@ -1,4 +1,4 @@
-import Header from '../../components/Header/Header';
+
 import Button from '../../components/UI/Button';
 import { useCart } from '../../context/CartContext';
 import './CartPage.css';
@@ -11,7 +11,6 @@ const CartPage = () => {
   if (sepetBos) {
     return (
       <div className="container mx-auto">
-        <Header />
         <h2 className="text-2xl font-bold mb-4">Sepetiniz</h2>
         <p>Sepetinizde ürün bulunmamaktadır.</p>
       </div>
@@ -74,7 +73,9 @@ const CartPage = () => {
           ))}
         </div>
         <div className="cart-summary">
-          <h3 className="text-xl font-bold">Toplam Tutar: {toplamTutar.toFixed(2)}₺</h3>
+          <h3 className="text-xl font-bold">
+            Toplam Tutar: {toplamTutar.toFixed(2)}₺
+          </h3>
         </div>
       </div>
     </div>

@@ -1,9 +1,6 @@
-import Header from '../components/Header/Header';
-
 const AboutPage = () => {
   return (
     <div className="about-page min-h-screen bg-gray-50">
-      <Header />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-gray-800 mb-8">Hakkımızda</h1>

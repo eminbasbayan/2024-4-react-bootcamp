@@ -30,7 +30,6 @@ const ProductDetail = () => {
   if (loading) {
     return (
       <>
-        <Header />
         <ProductDetailSkeleton />
       </>
     );

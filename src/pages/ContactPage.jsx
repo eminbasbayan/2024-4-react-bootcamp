@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import Header from '../components/Header/Header';
 import Button from '../components/UI/Button';
 import toast from 'react-hot-toast';
 
@@ -36,7 +35,6 @@ const ContactPage = () => {
 
   return (
     <div className="contact-page min-h-screen bg-gray-50">
-      <Header />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-3xl font-bold text-gray-800 mb-8">İletişim</h1>

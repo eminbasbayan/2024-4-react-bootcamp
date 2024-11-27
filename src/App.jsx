@@ -7,36 +7,43 @@ import ContactPage from './pages/ContactPage';
 import ProductDetail from './pages/ProductDetail';
 import LoginPage from './pages/Auth/LoginPage';
 import RegisterPage from './pages/Auth/RegisterPage';
+import MainLayout from './layouts/MainLayout';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />,
+      },
+      {
+        path: '/sepet',
+        element: <CartPage />,
+      },
+      {
+        path: '/hakkimizda',
+        element: <AboutPage />,
+      },
+      {
+        path: '/iletisim',
+        element: <ContactPage />,
+      },
+      {
+        path: '/urun/:productId',
+        element: <ProductDetail />,
+      },
+      {
+        path: '/auth/login',
+        element: <LoginPage />,
+      },
+      {
+        path: '/auth/register',
+        element: <RegisterPage />,
+      },
+    ],
   },
-  {
-    path: '/sepet',
-    element: <CartPage />,
-  },
-  {
-    path: '/hakkimizda',
-    element: <AboutPage />,
-  },
-  {
-    path: '/iletisim',
-    element: <ContactPage />,
-  },
-  {
-    path: '/urun/:productId',
-    element: <ProductDetail />,
-  },
-  {
-    path: "/auth/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/auth/register",
-    element: <RegisterPage />,
-  }
 ]);
 
 function App() {
