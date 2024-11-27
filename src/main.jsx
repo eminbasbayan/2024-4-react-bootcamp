@@ -5,11 +5,14 @@ import ThemeProvider from './context/ThemeProvider';
 
 import './index.css';
 import { CartProvider } from './context/CartContext';
+import AuthProvider from './context/AuthContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ThemeProvider>
-    <CartProvider>
-      <App />
-    </CartProvider>
-  </ThemeProvider>
+  <AuthProvider>
+    <ThemeProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </ThemeProvider>
+  </AuthProvider>
 );

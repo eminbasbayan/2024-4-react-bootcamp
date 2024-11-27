@@ -4,8 +4,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from '../../schemas/auth.schema';
 
 import Button from '../UI/Button';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
+  const { register: registerUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  
   const {
     register,
     handleSubmit,
@@ -18,8 +24,13 @@ const RegisterForm = () => {
     },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await registerUser(data.email, data.password, data.fullName);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
