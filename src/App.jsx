@@ -8,6 +8,7 @@ import ProductDetail from './pages/ProductDetail';
 import LoginPage from './pages/Auth/LoginPage';
 import RegisterPage from './pages/Auth/RegisterPage';
 import MainLayout from './layouts/MainLayout';
+import AuthLayout from './layouts/AuthLayout';
 
 const router = createBrowserRouter([
   {
@@ -34,12 +35,18 @@ const router = createBrowserRouter([
         path: '/urun/:productId',
         element: <ProductDetail />,
       },
+    ],
+  },
+  {
+    path: '/auth',
+    element: <AuthLayout />,
+    children: [
       {
-        path: '/auth/login',
+        path: 'login',
         element: <LoginPage />,
       },
       {
-        path: '/auth/register',
+        path: 'register',
         element: <RegisterPage />,
       },
     ],
