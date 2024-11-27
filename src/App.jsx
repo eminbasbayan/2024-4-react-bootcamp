@@ -9,6 +9,9 @@ import LoginPage from './pages/Auth/LoginPage';
 import RegisterPage from './pages/Auth/RegisterPage';
 import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
+import AdminLayout from './layouts/AdminLayout';
+import DashboardPage from './pages/Admin/DashboardPage';
+import ProductsPage from './pages/Admin/ProductsPage';
 
 const router = createBrowserRouter([
   {
@@ -51,15 +54,27 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: 'dashboard',
+        element: <DashboardPage />,
+      },
+      {
+        path: 'products',
+        element: <ProductsPage />,
+      },
+    ],
+  },
 ]);
 
 function App() {
   return (
     <div className="app">
-      <div className="container mx-auto">
-        <Toaster />
-        <RouterProvider router={router} />
-      </div>
+      <Toaster />
+      <RouterProvider router={router} />
     </div>
   );
 }

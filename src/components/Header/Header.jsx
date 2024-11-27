@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useState } from 'react';
 import './Header.css';
@@ -6,7 +6,6 @@ import './Header.css';
 const Header = () => {
   const { cartItems } = useCart();
   const sepetUrunSayisi = cartItems.length;
-  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -54,7 +53,9 @@ const Header = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  isActive ? 'text-blue-500' : 'text-gray-700 hover:text-blue-500'
+                  isActive
+                    ? 'text-blue-500'
+                    : 'text-gray-700 hover:text-blue-500'
                 }
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -63,7 +64,9 @@ const Header = () => {
               <NavLink
                 to="/hakkimizda"
                 className={({ isActive }) =>
-                  isActive ? 'text-blue-500' : 'text-gray-700 hover:text-blue-500'
+                  isActive
+                    ? 'text-blue-500'
+                    : 'text-gray-700 hover:text-blue-500'
                 }
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -72,7 +75,9 @@ const Header = () => {
               <NavLink
                 to="/iletisim"
                 className={({ isActive }) =>
-                  isActive ? 'text-blue-500' : 'text-gray-700 hover:text-blue-500'
+                  isActive
+                    ? 'text-blue-500'
+                    : 'text-gray-700 hover:text-blue-500'
                 }
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -81,7 +86,9 @@ const Header = () => {
               <NavLink
                 to="/sepet"
                 className={({ isActive }) =>
-                  isActive ? 'text-blue-500' : 'text-gray-700 hover:text-blue-500'
+                  isActive
+                    ? 'text-blue-500'
+                    : 'text-gray-700 hover:text-blue-500'
                 }
                 onClick={() => setIsMenuOpen(false)}
               >
