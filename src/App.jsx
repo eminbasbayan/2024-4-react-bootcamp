@@ -12,6 +12,7 @@ import AuthLayout from './layouts/AuthLayout';
 import AdminLayout from './layouts/AdminLayout';
 import DashboardPage from './pages/Admin/DashboardPage';
 import ProductsPage from './pages/Admin/ProductsPage';
+import Page404 from './pages/404Page';
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
         element: <ProductsPage />,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <Page404 />,
   },
 ]);
 
