@@ -145,6 +145,26 @@ const Header = () => {
               </svg>
               <span>Sepet ({sepetUrunSayisi})</span>
             </NavLink>
+            <NavLink
+              to="/auth/login"
+              className={({ isActive }) =>
+                isActive
+                  ? 'nav-link text-blue-500'
+                  : 'nav-link text-gray-700 hover:text-blue-500'
+              }
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/auth/register"
+              className={({ isActive }) =>
+                isActive
+                  ? 'nav-link text-blue-500'
+                  : 'nav-link text-gray-700 hover:text-blue-500'
+              }
+            >
+              Register
+            </NavLink>
           </div>
         </nav>
       </div>

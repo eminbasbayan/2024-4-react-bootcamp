@@ -5,6 +5,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import ProductDetail from './pages/ProductDetail';
+import LoginPage from './pages/Auth/LoginPage';
+import RegisterPage from './pages/Auth/RegisterPage';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,6 +29,14 @@ const router = createBrowserRouter([
     path: '/urun/:productId',
     element: <ProductDetail />,
   },
+  {
+    path: "/auth/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/auth/register",
+    element: <RegisterPage />,
+  }
 ]);
 
 function App() {
