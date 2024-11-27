@@ -1,8 +1,9 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '../config/firebase';
@@ -51,6 +52,16 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      toast.success('Başarıyla çıkış yaptınız!');
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser?.providerData[0]);
@@ -65,6 +76,7 @@ const AuthProvider = ({ children }) => {
     login,
     user,
     loading,
+    logout
   };
 
   return (
@@ -76,6 +88,14 @@ const AuthProvider = ({ children }) => {
 
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth hook must be used within AuthProvider');
+  }
+  return context;
 };
 
 export default AuthProvider;

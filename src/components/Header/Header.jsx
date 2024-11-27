@@ -2,9 +2,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useState } from 'react';
 import './Header.css';
+import { useAuth } from '../../context/AuthContext';
 
 const Header = () => {
   const { cartItems } = useCart();
+  const { user, logout } = useAuth();
   const sepetUrunSayisi = cartItems.length;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -152,26 +154,44 @@ const Header = () => {
               </svg>
               <span>Sepet ({sepetUrunSayisi})</span>
             </NavLink>
-            <NavLink
-              to="/auth/login"
-              className={({ isActive }) =>
-                isActive
-                  ? 'nav-link text-blue-500'
-                  : 'nav-link text-gray-700 hover:text-blue-500'
-              }
-            >
-              Login
-            </NavLink>
-            <NavLink
-              to="/auth/register"
-              className={({ isActive }) =>
-                isActive
-                  ? 'nav-link text-blue-500'
-                  : 'nav-link text-gray-700 hover:text-blue-500'
-              }
-            >
-              Register
-            </NavLink>
+            {user ? (
+              <>
+                <span className="nav-link text-gray-700">
+                  Hoşgeldin, {user.displayName}
+                </span>
+                <span
+                  className={
+                    'cursor-pointer nav-link text-gray-700 hover:text-blue-500'
+                  }
+                  onClick={logout}
+                >
+                  Çıkış Yap
+                </span>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/auth/login"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'nav-link text-blue-500'
+                      : 'nav-link text-gray-700 hover:text-blue-500'
+                  }
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/auth/register"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'nav-link text-blue-500'
+                      : 'nav-link text-gray-700 hover:text-blue-500'
+                  }
+                >
+                  Register
+                </NavLink>
+              </>
+            )}
           </div>
         </nav>
       </div>
