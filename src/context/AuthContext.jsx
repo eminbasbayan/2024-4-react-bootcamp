@@ -1,6 +1,7 @@
-import { createContext } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
@@ -12,6 +13,9 @@ import toast from 'react-hot-toast';
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const register = async (email, password, fullName) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -47,12 +51,27 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser?.providerData[0]);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const value = {
     register,
     login,
+    user,
+    loading,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 };
 
 AuthProvider.propTypes = {
