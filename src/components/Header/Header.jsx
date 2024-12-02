@@ -8,7 +8,8 @@ import './Header.css';
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
+  const { user } = useSelector((state) => state.auth);
   const sepetUrunSayisi = cartItems.length;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   console.log(cartItems);
