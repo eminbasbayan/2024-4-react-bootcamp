@@ -1,18 +1,22 @@
 import PropTypes from 'prop-types';
-import Button from '../UI/Button';
 import toast from 'react-hot-toast';
-import './ProductItem.css';
-import { useCart } from '../../context/CartContext';
+
+import Button from '../UI/Button';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { addToCart } from '../../redux/slices/cartSlice';
+
+import './ProductItem.css';
 
 function ProductItem(props) {
   const { id, image, category, title, price, onDeleteItem } = props;
   const { onDeleteItem: deleteItem, ...item } = props;
-  const { dispatch } = useCart();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleAddToCart = () => {
-    dispatch({ type: 'SEPETE_EKLE', item });
+    dispatch(addToCart(item));
     toast.success('Ürün sepete eklendi');
   };
 

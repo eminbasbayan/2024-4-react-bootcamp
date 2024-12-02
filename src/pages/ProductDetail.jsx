@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header/Header';
 import Button from '../components/UI/Button';
 import { useEffect, useState } from 'react';
 import ProductDetailSkeleton from '../components/Skeleton/ProductDetailSkeleton';
@@ -39,7 +38,6 @@ const ProductDetail = () => {
 
   return (
     <div className="product-detail min-h-screen bg-gray-50">
-      <Header />
       <p className="text-center text-2xl font-bold">{productId}</p>
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-md">

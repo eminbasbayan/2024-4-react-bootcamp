@@ -1,14 +1,17 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useCart } from '../../context/CartContext';
 import { useState } from 'react';
-import './Header.css';
+import { useSelector } from 'react-redux';
+
 import { useAuth } from '../../context/AuthContext';
 
+import './Header.css';
+
 const Header = () => {
-  const { cartItems } = useCart();
+  const { cartItems } = useSelector((state) => state.cart);
   const { user, logout } = useAuth();
   const sepetUrunSayisi = cartItems.length;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  console.log(cartItems);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
