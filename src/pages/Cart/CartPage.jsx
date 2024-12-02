@@ -1,10 +1,14 @@
-
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/UI/Button';
-import { useCart } from '../../context/CartContext';
+
+import { removeFromCart } from '../../redux/slices/cartSlice';
+
 import './CartPage.css';
 
+
 const CartPage = () => {
-  const { cartItems, dispatch } = useCart();
+  const { cartItems } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   // Örnek veri
   const sepetBos = cartItems.length === 0;
 
@@ -19,10 +23,7 @@ const CartPage = () => {
 
   const miktarGuncelle = (urunId, yeniMiktar) => {
     if (yeniMiktar < 1) return;
-    dispatch({
-      type: 'MIKTAR_GUNCELLE',
-      payload: { id: urunId, quantity: yeniMiktar },
-    });
+    dispatch();
   };
 
   const toplamTutar = cartItems.reduce(
@@ -62,9 +63,7 @@ const CartPage = () => {
                 </div>
                 <Button
                   color="danger"
-                  onClick={() =>
-                    dispatch({ type: 'SEPETTEN_CIKAR', id: item.id })
-                  }
+                  onClick={() => dispatch(removeFromCart(item.id))}
                 >
                   Ürünü Sil
                 </Button>
