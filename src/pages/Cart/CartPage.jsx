@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/UI/Button';
 
-import { removeFromCart } from '../../redux/slices/cartSlice';
+import { removeFromCart, updateQuantity } from '../../redux/slices/cartSlice';
 
 import './CartPage.css';
-
 
 const CartPage = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -23,7 +22,7 @@ const CartPage = () => {
 
   const miktarGuncelle = (urunId, yeniMiktar) => {
     if (yeniMiktar < 1) return;
-    dispatch();
+    dispatch(updateQuantity({ id: urunId, quantity: yeniMiktar }));
   };
 
   const toplamTutar = cartItems.reduce(
