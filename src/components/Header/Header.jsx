@@ -1,16 +1,14 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-
-import { useAuth } from '../../context/AuthContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../../redux/slices/authSlice';
 
 import './Header.css';
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
-  const { logout } = useAuth();
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
+  const dispatch = useDispatch();
 
   const sepetUrunSayisi = cartItems.length;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -168,7 +166,7 @@ const Header = () => {
                   className={
                     'cursor-pointer nav-link text-gray-700 hover:text-blue-500'
                   }
-                  onClick={logout}
+                  onClick={() => dispatch(logoutUser())}
                 >
                   Çıkış Yap
                 </span>
