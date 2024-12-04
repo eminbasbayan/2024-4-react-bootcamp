@@ -10,9 +10,10 @@ const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { logout } = useAuth();
   const { user } = useSelector((state) => state.auth);
+  console.log(user);
+
   const sepetUrunSayisi = cartItems.length;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log(cartItems);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
