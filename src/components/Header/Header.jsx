@@ -7,6 +7,7 @@ import './Header.css';
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
+  const { currentUserRole } = useSelector((state) => state.role);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -134,6 +135,7 @@ const Header = () => {
             >
               İletişim
             </NavLink>
+
             <NavLink
               to="/sepet"
               className={({ isActive }) =>
@@ -162,6 +164,18 @@ const Header = () => {
                 <span className="nav-link text-gray-700">
                   Hoşgeldin, {user.displayName}
                 </span>
+                {currentUserRole === 'admin' && (
+                  <NavLink
+                    to="/admin/dashboard"
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'nav-link text-blue-500'
+                        : 'nav-link text-gray-700 hover:text-blue-500'
+                    }
+                  >
+                    Admin
+                  </NavLink>
+                )}
                 <span
                   className={
                     'cursor-pointer nav-link text-gray-700 hover:text-blue-500'
