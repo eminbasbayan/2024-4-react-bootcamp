@@ -3,8 +3,14 @@ import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const RequireRole = ({ children, allowedRoles }) => {
-  const { currentUserRole } = useSelector((state) => state.role);
-  const { user } = useSelector((state) => state.auth);
+  const { currentUserRole, loading: roleLoading } = useSelector(
+    (state) => state.role
+  );
+  const { user, loading: authLoading } = useSelector((state) => state.auth);
+
+  if (roleLoading || authLoading) {
+    return <div className="p-6">Yükleniyor...</div>;
+  }
 
   if (!user) {
     return <Navigate to="/auth/login" />;
