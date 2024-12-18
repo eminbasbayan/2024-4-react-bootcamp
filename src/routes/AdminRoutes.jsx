@@ -1,7 +1,10 @@
+import { lazy, Suspense } from 'react';
 import RequireRole from '../components/Auth/RequireRole';
 import AdminLayout from '../layouts/AdminLayout';
-import DashboardPage from '../pages/Admin/DashboardPage';
-import ProductsPage from '../pages/Admin/ProductsPage';
+import LoadingSpinner from '../components/UI/LoadingSpinner';
+
+const DashboardPage = lazy(() => import('../pages/Admin/DashboardPage'));
+const ProductsPage = lazy(() => import('../pages/Admin/ProductsPage'));
 
 const adminRoutes = [
   {
@@ -14,11 +17,19 @@ const adminRoutes = [
     children: [
       {
         path: 'dashboard',
-        element: <DashboardPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <DashboardPage />
+          </Suspense>
+        ),
       },
       {
         path: 'products',
-        element: <ProductsPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <ProductsPage />
+          </Suspense>
+        ),
       },
     ],
   },
