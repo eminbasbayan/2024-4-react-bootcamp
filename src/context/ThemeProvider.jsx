@@ -3,8 +3,7 @@ import { ThemeContext } from './ThemeContext';
 import PropTypes from 'prop-types';
 
 const ThemeProvider = ({ children }) => {
-
-  return <ThemeContext.Provider>{children}</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={{}}>{children}</ThemeContext.Provider>;
 };
 
 ThemeProvider.propTypes = {
