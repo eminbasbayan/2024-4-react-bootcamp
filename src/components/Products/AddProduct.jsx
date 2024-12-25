@@ -1,86 +1,135 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from '../UI/Button';
-import './AddProduct.css';
-import ProductInput from './ProductInput';
+import { motion } from 'framer-motion';
 
-const productInputs = [
-  {
-    label: 'Title',
-    type: 'text',
-    placeholder: 'Ürün ismi giriniz.',
-    name: 'title',
-  },
-  {
-    label: 'Price',
-    type: 'number',
-    placeholder: 'Ürün fiyatı giriniz.',
-    name: 'price',
-  },
-  {
-    label: 'Image URL',
-    type: 'text',
-    placeholder: 'Ürün görseli giriniz.',
-    name: 'image',
-  },
-  {
-    label: 'Category',
-    type: 'text',
-    placeholder: 'Ürün kategorisi giriniz.',
-    name: 'category',
-  },
-];
-
-function AddProduct({ setProducts, setShowModal }) {
-  const [product, setProduct] = useState({
+function AddProduct({ products, setProducts, setShowModal }) {
+  const [formData, setFormData] = useState({
     title: '',
     price: '',
     image: '',
-    category: '',
+    category: ''
   });
-  const [isShowButton, setShowButton] = useState(true);
 
-  function handleChange({ target: { name, value } }) {
-    setProduct({ ...product, [name]: value });
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setShowButton(!isShowButton);
-    const isFormValid = Object.values(product).every(
-      (value) => value.trim() !== ''
-    );
-
-    if (!isFormValid) {
-      console.error('Input alanları boş geçilemez!');
+    // Form validasyonu
+    if (!formData.title || !formData.price || !formData.image || !formData.category) {
       setShowModal(true);
       return;
     }
 
     const newProduct = {
-      id: Math.random(),
-      ...product,
-      price: Number(product.price),
-      setShowModal: PropTypes.func,
+      id: products.length + 1,
+      ...formData,
+      price: parseFloat(formData.price)
     };
 
     setProducts(newProduct);
-  }
+    setFormData({
+      title: '',
+      price: '',
+      image: '',
+      category: ''
+    });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   return (
-    <form className="add-product-form" onSubmit={handleSubmit}>
-      {productInputs.map((input, index) => (
-        <ProductInput key={index} {...input} handleChange={handleChange} />
-      ))}
-      <Button color={'success'}>Yeni Ürün Ekle</Button>
-    </form>
+    <motion.form
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      onSubmit={handleSubmit}
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+    >
+      <div className="space-y-2">
+        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+          Ürün Adı
+        </label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Ürün adını giriniz"
+          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+          Fiyat
+        </label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          value={formData.price}
+          onChange={handleChange}
+          placeholder="Fiyat giriniz"
+          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="image" className="block text-sm font-medium text-gray-700">
+          Görsel URL
+        </label>
+        <input
+          type="url"
+          id="image"
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+          placeholder="Görsel URL'si giriniz"
+          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+          Kategori
+        </label>
+        <select
+          id="category"
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+        >
+          <option value="">Kategori Seçiniz</option>
+          <option value="electronics">Electronics</option>
+          <option value="jewelery">Jewelery</option>
+          <option value="men's clothing">Men's Clothing</option>
+          <option value="women's clothing">Women's Clothing</option>
+        </select>
+      </div>
+
+      <div className="md:col-span-2 lg:col-span-4 flex justify-end">
+        <button
+          type="submit"
+          className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200"
+        >
+          Ürün Ekle
+        </button>
+      </div>
+    </motion.form>
   );
 }
 
-export default AddProduct;
-
 AddProduct.propTypes = {
-  products: PropTypes.array,
-  setProducts: PropTypes.func,
-  setShowModal: PropTypes.func,
+  products: PropTypes.array.isRequired,
+  setProducts: PropTypes.func.isRequired,
+  setShowModal: PropTypes.func.isRequired,
 };
+
+export default AddProduct;
