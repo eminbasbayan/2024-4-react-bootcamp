@@ -1,6 +1,7 @@
 import MainLayout from '../layouts/MainLayout';
 import AboutPage from '../pages/AboutPage';
 import CartPage from '../pages/Cart/CartPage';
+import CheckoutPage from '../pages/CheckoutPage';
 import ContactPage from '../pages/ContactPage';
 import HomePage from '../pages/HomePage';
 import ProductDetail from '../pages/ProductDetail';
@@ -18,6 +19,10 @@ const mainRoutes = [
       {
         path: '/sepet',
         element: <CartPage />,
+      },
+      {
+        path: '/odeme',
+        element: <CheckoutPage />,
       },
       {
         path: '/urunler',
