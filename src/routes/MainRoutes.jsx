@@ -4,6 +4,7 @@ import CartPage from '../pages/Cart/CartPage';
 import ContactPage from '../pages/ContactPage';
 import HomePage from '../pages/HomePage';
 import ProductDetail from '../pages/ProductDetail';
+import ProductsPage from '../pages/ProductsPage';
 
 const mainRoutes = [
   {
@@ -17,6 +18,10 @@ const mainRoutes = [
       {
         path: '/sepet',
         element: <CartPage />,
+      },
+      {
+        path: '/urunler',
+        element: <ProductsPage />,
       },
       {
         path: '/hakkimizda',
